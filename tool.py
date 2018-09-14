@@ -1,5 +1,10 @@
 #argv number must between 4 and 5, inclusive
 import sys
+import init
+
+BAD_ARGS = -1
+BAD_KEY = -2
+OK = 1
 
 def main(argv):
     if not (4 <= len(argv) <= 5):
@@ -11,9 +16,10 @@ def main(argv):
     value = argv[4]
     if verb not in ['get', 'set', 'delete']:
         return BAD_ARGS
+    db = init.connect(dbname)
     try:
         if verb == 'get':
-            return
+            sys.stdout.write(db.get(key))
         elif verb == 'set':
             return
         else:
