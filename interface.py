@@ -6,9 +6,12 @@ class DBDB(object):
         self.storge = phy.Stroge(f)
         self.tree = bt.BinaryTree(self.storge)
 
-    def get(self, key):
+    def getitem(self, key):
         self.assert_not_closed()
         return self.tree.get(key)
+
+    def setitem(self, key, value):
+        return self.tree.set(key, value)
 
     def assert_not_closed(self):
         if self.storge.closed:

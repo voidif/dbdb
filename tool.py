@@ -7,6 +7,8 @@ BAD_KEY = -2
 OK = 1
 
 def main(argv):
+    a = 1
+    a = '5'
     if not (4 <= len(argv) <= 5):
         return BAD_ARGS
     argv.append(None)
@@ -19,9 +21,10 @@ def main(argv):
     db = init.connect(dbname)
     try:
         if verb == 'get':
-            sys.stdout.write(db.get(key))
+            sys.stdout.write(db.getitem(key))
         elif verb == 'set':
-            return
+            db.setitem(key, value)  
+            db.commit()
         else:
             return
     except KeyError:
