@@ -20,9 +20,10 @@ class BinaryTree(logical.LogicalBase):
         raise KeyError
         
 
-    def insert(self, node, key, value):
+    def insert(self, key, value):
         if self.rootnode == None:
             rootnode = BinaryNode(None, None, key, value)
+            return rootnode
         curnode = rootnode
         while curnode != None:
             if curnode.key > key:

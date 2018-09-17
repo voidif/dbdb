@@ -11,10 +11,10 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "dbdb.tool",
                 "example.db",
                 "set",
-                "foo"
+                "foo",
+                "5"
             ]
         },
         {
