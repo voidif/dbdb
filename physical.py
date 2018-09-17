@@ -1,4 +1,5 @@
 import portalocker
+import os
 
 class Stroge(object):
     SUPERBLOCK_SIZE = 4096
@@ -6,13 +7,13 @@ class Stroge(object):
     def __init__(self, f):
         self.locked = False
         self.f = f
-        self.closed = True
+        self.ensure_superblock()
 
     def ensure_superblock(self):
         self.lock()
         self.seek_end()
         end_address = self.f.tell()
-        if endaddress < self.SUPERBLOCK_SIZE:
+        if end_address < self.SUPERBLOCK_SIZE:
             self.f.write(b'\x00' * (self.SUPERBLOCK_SIZE - end_address))
         self.unlock()
 
@@ -31,3 +32,6 @@ class Stroge(object):
             return True
         else:
             return False
+
+    def seek_end(self):
+        self.f.seek(0, os.SEEK_END)
